@@ -12,7 +12,6 @@ with open("./testdata.yaml") as f:
     browser = testdata["browser"]
 
 
-
 class Site:
     def __init__(self, address):
         if browser == "firefox":
@@ -23,7 +22,7 @@ class Site:
             service = Service(executable_path=ChromeDriverManager().install())
             options = webdriver.ChromeOptions()
             self.driver = webdriver.Chrome(service=service, options=options)
-        self.driver.implicitly_wait(3)
+        self.driver.implicitly_wait(testdata["wait"])
         self.driver.maximize_window()
         self.driver.get(address)
         time.sleep(testdata["sleep_time"])
@@ -47,3 +46,5 @@ class Site:
     def close(self):
         self.driver.close()
 
+    def quit(self):
+        self.driver.quit()
