@@ -3,19 +3,27 @@ import time
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.chrome.service import Service
+from webdrivermanager_cn.chrome import ChromeDriverManager
+from webdrivermanager_cn.geckodriver import GeckodriverManager
 
 
 with open("./testdata.yaml") as f:
     testdata = yaml.safe_load(f)
+    browser = testdata["browser"]
 
-
-service = Service(testdata["driver_path"])
-options = webdriver.ChromeOptions()
 
 
 class Site:
     def __init__(self, address):
-        self.driver = webdriver.Chrome(service=service, options=options)
+        if browser == "firefox":
+            service = Service(executable_path=GeckodriverManager().install())
+            options = webdriver.FirefoxOptions()
+            self.driver = webdriver.Firefox(service=service, options=options)
+        elif browser == "chrome":
+            service = Service(executable_path=ChromeDriverManager().install())
+            options = webdriver.ChromeOptions()
+            self.driver = webdriver.Chrome(service=service, options=options)
+        self.driver.implicitly_wait(3)
         self.driver.maximize_window()
         self.driver.get(address)
         time.sleep(testdata["sleep_time"])
@@ -35,7 +43,6 @@ class Site:
             return element.value_of_css_property(property)
         else:
             return None
-
 
     def close(self):
         self.driver.close()
