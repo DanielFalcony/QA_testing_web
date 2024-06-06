@@ -6,6 +6,7 @@ with open("./testdata.yaml") as f:
 
 username = testdata["username"]
 
+
 @pytest.fixture()
 def x_selector1():
     return """//*[@id="login"]/div[1]/label/input"""
@@ -24,7 +25,6 @@ def x_selector3():
 @pytest.fixture()
 def x_selector4():
     return """//*[@id="app"]/main/nav/ul/li[3]/a"""
-
 
 
 @pytest.fixture()

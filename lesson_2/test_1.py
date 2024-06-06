@@ -16,7 +16,6 @@ def test_step1(x_selector1, x_selector2, btn_selector, x_selector3, err1):
     btn.click()
     error_label = site.find_element("xpath", x_selector3)
     text = error_label.text
-    site.quit()
     assert text == err1
 
 
