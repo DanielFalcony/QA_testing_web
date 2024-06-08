@@ -1,5 +1,5 @@
 from selenium.webdriver.support.wait import WebDriverWait
-from selenium.webdriver.support import expect_conditions as EC
+import selenium.webdriver.support.expected_conditions as EC
 
 
 class BasePage:
