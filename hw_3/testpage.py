@@ -112,3 +112,9 @@ class OperationsHelper(BasePage):
     def click_contact_us_send_msg_button(self):
         logging.info("Click contact us send msg button")
         self.find_element(TestSearchLocators.LOCATOR_CONTACT_US_SEND_MSG_BTN).click()
+
+    def get_alert(self):
+        logging.info("Get alert text")
+        text = self.get_alert_text()
+        logging.info(f"Get alert text: {text}")
+        return text
