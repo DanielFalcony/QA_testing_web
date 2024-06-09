@@ -21,3 +21,7 @@ class BasePage:
 
     def go_to_site(self):
         return self.driver.get(self.base_url)
+
+    def get_alert_text(self):
+        alert = self.driver.switch_to.alert
+        return alert.text

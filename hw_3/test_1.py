@@ -1,3 +1,4 @@
+import time
 from BaseApp import testdata
 from testpage import OperationsHelper
 import logging
@@ -42,6 +43,7 @@ def test_step4(browser):
     testpage.enter_contact_us_email("hzdkv@example.com")
     testpage.enter_contact_us_content("some content")
     testpage.click_contact_us_send_msg_button()
-    testpage.get_contact_us_success_text()
-    assert True if testpage.get_contact_us_success_text() == "Form successfully submitted" else False
+    time.sleep(testdata["sleep_time"])
+    testpage.get_alert_text()
+    assert True if testpage.get_alert_text() == "Form successfully submitted" else False
 
