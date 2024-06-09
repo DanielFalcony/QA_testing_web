@@ -44,6 +44,6 @@ def test_step4(browser):
     testpage.enter_contact_us_content("some content")
     testpage.click_contact_us_send_msg_button()
     time.sleep(testdata["sleep_time"])
-    testpage.get_alert_text()
-    assert True if testpage.get_alert_text() == "Form successfully submitted" else False
+    testpage.get_alert()
+    assert True if testpage.get_alert() == "Form successfully submitted" else False
 
